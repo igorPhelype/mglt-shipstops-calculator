@@ -1,18 +1,41 @@
 import React from 'react'
+
+import {
+    StyledErrorText,
+    StyledInputBox,
+    StyledInputText
+} from './styles'
+
 import { InputTextProps } from '../../types/input'
-import { StyledInputText } from './styles'
+import { FlexAlignments, FlexDirections } from '../../types/flex'
 
 const InputText: React.FC<InputTextProps> = ({
     value,
-    onInputTextChange
+    onInputTextChange,
+    error
 }) => {
+    const handleInputTextChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        onInputTextChange && onInputTextChange(e.target.value)
+    }
+
     return (
-        <StyledInputText
-            value={value}
-            onChange={(e) => {
-                onInputTextChange && onInputTextChange(e.target.value)
-            }}
-        />
+        <StyledInputBox
+            justify={FlexAlignments.CENTER}
+            align={FlexAlignments.CENTER}
+            direction={FlexDirections.COLUMN}
+        >
+            <StyledInputText
+                error={error}
+                type="number"
+                value={value}
+                onChange={handleInputTextChange}
+            />
+            <StyledErrorText
+                visible={Boolean(error)}
+            >
+                {error}
+            </StyledErrorText>
+        </StyledInputBox>
     )
 }
 

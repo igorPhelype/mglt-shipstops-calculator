@@ -25,3 +25,12 @@ code {
   font-family: StarJedi;
   src: url(./fonts/Starjedi.ttf);
 }
+
+*::-webkit-scrollbar {
+  display: none;
+}
+
+* {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
